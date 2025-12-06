@@ -3,6 +3,9 @@ import pandas as pd
 datasets.load_iris()
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+import numpy as np
 
 
 #load the dataset into a pandas DataFrame from sklearn built-in datasets
@@ -29,7 +32,6 @@ def explore_data(df):
 
 
 #train test split
-from sklearn.model_selection import train_test_split
 df_train, df_test = train_test_split(df, test_size=0.25)
 print(f"Train set size: {df_train.shape}, Test set size: {df_test.shape}")
 
@@ -47,3 +49,8 @@ def single_feature_modeling(petal_length):
     else:
         return 2  # virginica
 manual_predictions = [single_feature_modeling(pl) for pl in x_train[:,2]]  # petal length is the 3rd feature
+manual_predictions == y_train
+manual_model_accuracy = np.mean(manual_predictions == y_train)
+print(f"Manual model accuracy: {manual_model_accuracy*100:.2f}%")
+
+#modling logistic regression
