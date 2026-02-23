@@ -7,8 +7,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import cross_val_score,cross_val_predict
 import numpy as np
-from sklearn.ensembles import RandomForestClassifier
-
+from sklearn.ensemble import RandomForestClassifier
+import torch.nn as nn
 
 #load the dataset into a pandas DataFrame from sklearn built-in datasets
 data = datasets.load_iris()
@@ -94,11 +94,13 @@ def plot_incorrect_predictions(df_predictions,x_axis_feature, y_axis_feature):
     axs = axs.flatten()
     sns.scatterplot(data=df_predictions, x=x_axis_feature, y=y_axis_feature, hue='prediction_label', ax =axs[0])
     sns.scatterplot(data=df_predictions, x=x_axis_feature, y=y_axis_feature, hue='target_name', ax =axs[1]) 
-    sns.scatterplot(data=df_predictions, x=x_axis_feature, y=y_axis_feature, hue='correct_prediction', ax =axs[2])
+    sns.scatterplot(data=df_predictions, x=x_axis_feature, y=y_axis_feature, hue='Correct_Prediction', ax =axs[2])
     axs[3].set_visible(False)
     plt.show()
 
 plot_incorrect_predictions(df_predictions,'petal length (cm)', 'petal width (cm)')
+
+print("done")
 
 # Model Tuning with Random Forest
 # Trying to determine the parameters of your model that maximize performance
