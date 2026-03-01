@@ -101,10 +101,10 @@ for i in range(epochs):
     loss.backward() # backpropagation to calculate gradients
     optimizer.step() # update the weights based on the gradients
 
-# plt.plot(range(epochs), losses)
-# plt.xlabel("Epochs")
-# plt.ylabel("Loss")
-# plt.title("Training Loss Over Time")
-# plt.show()
+plt.plot(range(len(losses)), losses)
+plt.xlabel("Batch")
+plt.ylabel("Loss")
+plt.title("Training Loss Over Time")
+plt.show()
 
 print("done")
