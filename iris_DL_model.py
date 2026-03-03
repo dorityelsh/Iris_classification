@@ -107,4 +107,21 @@ plt.ylabel("Loss")
 plt.title("Training Loss Over Time")
 plt.show()
 
-print("done")
+#Evaluate Model on Test Dataset 
+with torch.no_grad():  # Do not calculate new grad, we are not training just evaluate. 
+  y_eval = model.forward(x_test)
+  loss = criterion(y_eval, y_test)
+  
+print (loss)
+
+correct = 0
+with torch.no_grad():
+  for i, data in enumerate(x_test):
+    y_val = model.forward(data)
+
+    print (f'{i+1}.) {str(y_val)}\t {y_test[i]}\t {y_val.argmax().item()}') 
+
+    if y_val.argmax().item()==y_test[i]:
+      correct +=1
+
+print (f'We got {correct} correct')
